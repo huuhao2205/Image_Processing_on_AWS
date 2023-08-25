@@ -27,19 +27,23 @@ app.use(bodyParser.json());
 
 /**************************************************************************** */
 app.get("/filteredimage", async (req, res) => {
-  const image_url = req.query.image_url.toString();
+  let { image_url } = req.query;
 
-  if (image_url) {
-    try {
-      const image = await filterImageFromURL(image_url);
-
-      return res.status(200).sendFile(image, () => deleteLocalFiles([image]));
-    } catch (e) {
-      return res.status(400).send("Fail to filter image");
-    }
-  } else {
-    return res.status(404).send("Image not found");
+  if (!image_url) {
+    return res
+      .status(400)
+      .send({ message: "image url is required or malformed" });
   }
+
+  filterImageFromURL(image_url)
+    .then((local_path) => {
+      res.sendFile(local_path, (err) => {
+        deleteLocalFiles([local_path]);
+      });
+    })
+    .catch((err) => {
+      res.status(400).send({ message: "image url is required or malformed" });
+    });
 });
 //! END @TODO1
 
