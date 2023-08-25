@@ -9,15 +9,15 @@ http://image-processing-dev.us-east-1.elasticbeanstalk.com/
 You'll need to create a new node server. Open a new terminal within the project directory and run:
 
 1. Initialize a new project: `npm i`
-2. run the development server with `npm run dev`
+2. run the development server with `npm run start`
 
 ### Create a new endpoint in the server.ts file
 
-The starter code has a task for you to complete an endpoint in `./src/server.ts` which uses query parameter to download an image from a public URL, filter the image, and return the result.
+The starter code has a task for you to complete an endpoint in `./project starter code/server.js` which uses query parameter to download an image from a public URL, filter the image, and return the result.
 
-We've included a few helper functions to handle some of these concepts and we're importing it for you at the top of the `./src/server.ts` file.
+We've included a few helper functions to handle some of these concepts and we're importing it for you at the top of the `./project starter code/server.js` file.
 
-```typescript
+```javascript
 import { filterImageFromURL, deleteLocalFiles } from "./util/util";
 ```
 
